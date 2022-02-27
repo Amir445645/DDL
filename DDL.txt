@@ -1,0 +1,23 @@
+CREATE TABLE Customer (
+	customer_ID VARCHAR2(20) CONSTRAINT contrainte_11 PRIMARY KEY,
+	customer_Name VARCHAR2(20)CONSTRAINT contrainte_12 NOT NULL,
+	customer_ID NUMBER,
+);
+CREATE TABLE Product (
+	product_ID VARCHAR2(20) CONSTRAINT contrainte_21 PRIMARY KEY,
+	product_Name VARCHAR2(20) CONSTRAINT contrainte_22 NOT NULL,
+	price NUMBER CONSTRAINT contrainte_23 CHECK (price > 0)
+);
+CREATE TABLE Orders (
+   	
+        quantity NUMBER,
+	total_Amount NUMBER,
+        CONSTRAINT contrainte_31 PRIMARY KEY ( customer_ID,product_ID),
+        CONSTRAINT contrainte_32 FOREIGN KEY (customer_ID) REFERENCES Customer (customer_ID),
+   	CONSTRAINT contrainte_33 FOREIGN KEY (product_ID) REFERENCES Product (product_ID),
+
+
+);
+
+ALTER TABLE Product ADD Category VARCHAR2(20);
+ALTER TABLE Orders ADD Order_Date DATE CONSTRAINT DEFAULT SYSDATE();
